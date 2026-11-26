@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vigyani AI Handbook</title>
+<meta name="description" content="A friendly, step-by-step guide for new Vigyani AI users: sign up, add your keys, build your first AI agent, teach it your documents, and put it on chat, phone or WhatsApp.">
+<style>
+:root{
+  --bg:#f7f8fb; --surface:#ffffff; --surface-2:#f0f3f9; --text:#1b2333; --muted:#5b6578;
+  --border:#e2e7f0; --accent:#4f46e5; --accent-soft:#eef0ff; --accent-text:#3730a3;
+  --tip:#0f766e; --tip-soft:#e6f6f4; --warn:#b45309; --warn-soft:#fdf3e3;
+  --shadow:0 1px 2px rgba(20,30,60,.06),0 4px 16px rgba(20,30,60,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f131b; --surface:#171c27; --surface-2:#1e2431; --text:#e7ebf3; --muted:#9aa4b8;
+    --border:#2a3242; --accent:#8b8cff; --accent-soft:#23264a; --accent-text:#c7c8ff;
+    --tip:#5eead4; --tip-soft:#12302d; --warn:#fbbf24; --warn-soft:#33270f;
+    --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f131b; --surface:#171c27; --surface-2:#1e2431; --text:#e7ebf3; --muted:#9aa4b8;
+  --border:#2a3242; --accent:#8b8cff; --accent-soft:#23264a; --accent-text:#c7c8ff;
+  --tip:#5eead4; --tip-soft:#12302d; --warn:#fbbf24; --warn-soft:#33270f;
+  --shadow:none;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 "Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px;display:grid;grid-template-columns:240px 1fr;gap:40px}
+header.hero{background:linear-gradient(135deg,var(--accent-soft),var(--bg));border-bottom:1px solid var(--border);padding:56px 0 40px}
+header.hero .inner{max-width:1120px;margin:0 auto;padding:0 16px}
+.badge{display:inline-block;background:var(--surface);border:1px solid var(--border);color:var(--accent-text);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600}
+h1{font-size:clamp(28px,4.5vw,42px);line-height:1.2;margin:14px 0 10px}
+.lede{font-size:18px;color:var(--muted);max-width:720px;margin:0}
+nav.toc{position:sticky;top:20px;align-self:start;padding-top:32px;font-size:14.5px}
+nav.toc b{display:block;color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+nav.toc a{display:block;color:var(--text);text-decoration:none;padding:5px 10px;border-radius:8px;border-left:2px solid transparent}
+nav.toc a:hover{background:var(--surface-2);border-left-color:var(--accent)}
+main{padding:32px 0 80px;min-width:0}
+section{margin-bottom:56px;scroll-margin-top:20px}
+h2{font-size:26px;margin:0 0 6px;display:flex;gap:12px;align-items:center}
+h2 .n{flex:none;width:34px;height:34px;border-radius:10px;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:16px}
+h3{font-size:18px;margin:26px 0 8px}
+.sub{color:var(--muted);margin:0 0 18px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.grid .card{margin:0}
+.card h4{margin:0 0 6px;font-size:16px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:10px 0}
+ol.steps>li{counter-increment:s;position:relative;padding:4px 0 14px 46px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;background:var(--accent-soft);color:var(--accent-text);font-weight:700;display:grid;place-items:center;font-size:14px}
+.ui{display:inline-block;background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:0 7px;font-size:.92em;font-weight:600;white-space:nowrap}
+.note{border-radius:12px;padding:14px 18px;margin:16px 0;font-size:15px}
+.note b{display:block;margin-bottom:2px}
+.tip{background:var(--tip-soft);border-left:4px solid var(--tip)}
+.tip b{color:var(--tip)}
+.warn{background:var(--warn-soft);border-left:4px solid var(--warn)}
+.warn b{color:var(--warn)}
+table{width:100%;border-collapse:collapse;font-size:15px;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--surface-2);font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.tablewrap{overflow-x:auto}
+.journey{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0}
+.journey span{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-weight:600;font-size:14px}
+.journey i{color:var(--muted);font-style:normal}
+details{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 18px;margin:10px 0}
+summary{cursor:pointer;font-weight:600}
+details p{color:var(--muted);margin:8px 0 2px}
+dl.gloss dt{font-weight:700;margin-top:12px}
+dl.gloss dd{margin:2px 0 0;color:var(--muted)}
+footer{border-top:1px solid var(--border);color:var(--muted);font-size:14px;padding:24px 16px;text-align:center}
+.themebtn{float:right;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;font:inherit;font-size:14px}
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr;gap:0}
+  nav.toc{position:static;padding-top:20px;display:flex;flex-wrap:wrap;gap:6px}
+  nav.toc b{width:100%}
+  nav.toc a{border:1px solid var(--border);border-left-width:1px}
+}
+@media print{nav.toc,.themebtn{display:none}.wrap{display:block}.card,details{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="inner">
+    <button class="themebtn" id="themebtn" type="button">Light / Dark</button>
+    <span class="badge">Getting started · New user guide</span>
+    <h1>Welcome to Vigyani AI</h1>
+    <p class="lede">Vigyani AI helps you build an AI assistant ("agent") that talks to your customers on website chat, voice, phone and WhatsApp, in many languages. This guide walks you through it step by step. You don't need any technical background.</p>
+    <div class="journey" aria-label="Your first-day journey">
+      <span>Sign up</span><i>→</i><span>Get approved</span><i>→</i><span>Add your AI key</span><i>→</i><span>Upload documents</span><i>→</i><span>Build your agent</span><i>→</i><span>Test &amp; publish</span><i>→</i><span>Connect channels</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc" aria-label="Contents">
+  <b>Contents</b>
+  <a href="#what">What is Vigyani AI?</a>
+  <a href="#signup">1. Create your account</a>
+  <a href="#tour">2. A quick tour</a>
+  <a href="#keys">3. Add your AI keys</a>
+  <a href="#library">4. Teach it your documents</a>
+  <a href="#build">5. Build your first agent</a>
+  <a href="#publish">6. Test &amp; publish</a>
+  <a href="#channels">7. Phone &amp; WhatsApp</a>
+  <a href="#team">8. Invite your team</a>
+  <a href="#insights">9. See how it's doing</a>
+  <a href="#settings">10. Brand &amp; settings</a>
+  <a href="#help">Problems &amp; answers</a>
+  <a href="#words">Words to know</a>
+</nav>
+
+<main>
+
+<section id="what">
+  <h2>What is Vigyani AI?</h2>
+  <p class="sub">Think of it as hiring a tireless front-desk assistant who never sleeps and speaks your customers' language.</p>
+  <div class="grid">
+    <div class="card"><h4>Answers questions</h4><p>It learns from the documents you upload (price lists, FAQs, policies) and answers from them.</p></div>
+    <div class="card"><h4>Talks everywhere</h4><p>The same agent can work in website chat, web voice, a phone line and WhatsApp.</p></div>
+    <div class="card"><h4>Gets things done</h4><p>It can collect details, take bookings, send emails and payment links, and create quotations.</p></div>
+    <div class="card"><h4>Shows you results</h4><p>See how many conversations it handled, what customers ask for, and how much time it saved you.</p></div>
+  </div>
+</section>
+
+<section id="signup">
+  <h2><span class="n">1</span>Create your account</h2>
+  <p class="sub">About 5 minutes, plus a short wait for approval.</p>
+  <ol class="steps">
+    <li>Open <a href="https://www.vigyani.ai">www.vigyani.ai</a> and click <span class="ui">Sign up</span>.</li>
+    <li>Choose <span class="ui">Continue with Google</span>, or <span class="ui">Sign up with email</span> and fill in your name, email and a password.</li>
+    <li>If you used email, check your inbox for a <b>"Verify email"</b> message from <b>Vigyani AI</b> and click the link. (Check spam if you don't see it within a few minutes.)</li>
+    <li>You'll see an <span class="ui">Awaiting Approval</span> screen. That's normal: a Vigyani administrator checks each new account. You'll get an email once your account is activated.</li>
+    <li>After approval, go to <span class="ui">Sign in</span> and log in. You land on your <b>Dashboard</b>.</li>
+  </ol>
+  <div class="note tip"><b>Tip</b>Use the same sign-in method every time. If you signed up with Google, keep using <span class="ui">Continue with Google</span>.</div>
+  <div class="note warn"><b>Seeing "Payment required"?</b>Your account has an unpaid invoice. If you're the account admin, click <span class="ui">View invoices</span> to pay. Otherwise ask your admin.</div>
+</section>
+
+<section id="tour">
+  <h2><span class="n">2</span>A quick tour</h2>
+  <p class="sub">The menu on the left has four sections. Each one opens with a row of tabs at the top.</p>
+  <div class="tablewrap"><table>
+    <tr><th>Menu</th><th>What you'll find there</th></tr>
+    <tr><td><b>Dashboard</b></td><td>Your home page: a status message, conversation counts, time saved, costs, and a <span class="ui">Quick Start</span> button that shows your next step.</td></tr>
+    <tr><td><b>Smart Sections</b></td><td>Where you build things. <b>Vigyani Flow</b> (your agents), <b>Vigyani Library</b> (your documents), <b>Vigyani Personas</b> (partners your agent can contact), <b>Insights Configurations</b> and <b>Pricing Rules</b>.</td></tr>
+    <tr><td><b>Insights</b></td><td>Results and reports: Customer Insights, Analytics, Tickets, Usage, Callers.</td></tr>
+    <tr><td><b>Settings</b></td><td>Your profile, AI keys, notifications, brand, templates, team members and channels (phone, WhatsApp).</td></tr>
+  </table></div>
+  <div class="note tip"><b>What should I do first?</b>Look at the status message at the top of the Dashboard. "Get started by creating your first agent" or "Some configuration needed" tells you there's a step left. The <span class="ui">Quick Start</span> card always points to it.</div>
+  <div class="note"><b>About "Create with AI"</b>You may see a <span class="ui">Create with AI</span> card for setting up an agent just by chatting. It's still being built and shows a "coming soon" page for now. Use the canvas builder in <a href="#build">step 5</a> instead.</div>
+</section>
+
+<section id="keys">
+  <h2><span class="n">3</span>Add your AI keys</h2>
+  <p class="sub">Your agent's "brain" and "voice" come from AI companies such as Google Gemini or OpenAI. You connect your own account with them using a <b>key</b>, a long password the provider gives you.</p>
+  <div class="note tip"><b>Why your own key?</b>You only pay those companies for what your agent uses, and your data stays under your account. Vigyani has no shared key, so <b>an agent can't run without one</b>.</div>
+  <ol class="steps">
+    <li>Get a key from the provider's website, for example a Google Gemini key from Google AI Studio. Copy it.</li>
+    <li>In Vigyani, open <span class="ui">Settings</span> → <span class="ui">Vigyani Credentials</span> and expand <b>Vendors</b>.</li>
+    <li>Click <span class="ui">Add credential</span>, choose the provider, paste the key, give it a name you'll recognise (optional), and save.</li>
+    <li>Click <span class="ui">Test</span> next to the key to check it works.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <tr><th>If your agent will…</th><th>You need</th><th>Examples</th></tr>
+    <tr><td>Chat in text</td><td>One "thinking" (LLM) key</td><td>Google Gemini (the default), OpenAI, Anthropic, Groq</td></tr>
+    <tr><td>Talk by voice or phone</td><td>The LLM key, plus a <b>listening</b> key (speech-to-text) and a <b>speaking</b> key (text-to-speech)</td><td>Listening: Deepgram or OpenAI. Speaking: Cartesia, ElevenLabs or OpenAI</td></tr>
+  </table></div>
+  <div class="note warn"><b>Only admins see this page.</b>If you can't find Vigyani Credentials, ask your account admin to add the keys, or to give you the Admin role.</div>
+</section>
+
+<section id="library">
+  <h2><span class="n">4</span>Teach it your documents</h2>
+  <p class="sub">Upload what your agent should know: FAQs, brochures, price lists, policies.</p>
+  <ol class="steps">
+    <li>Go to <span class="ui">Smart Sections</span> → <span class="ui">Vigyani Library</span>.</li>
+    <li>Click <span class="ui">New folder</span> and give it a clear name, such as "Hotel FAQs". One folder per topic keeps things tidy.</li>
+    <li>Open the folder and click <span class="ui">Upload Files</span>. Accepted files: <b>PDF, Word (DOC/DOCX), Excel (XLS/XLSX), CSV, TXT, Markdown, HTML, XML, JSON</b>.</li>
+    <li>Wait for the file to be read. A small icon next to the name means it's still working; hover over it to see the status. When the icon goes away, the file is ready.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <tr><th>You see</th><th>Meaning</th><th>What to do</th></tr>
+    <tr><td>Indexing in progress</td><td>The file is still being read.</td><td>Wait a minute or two. Big files take longer.</td></tr>
+    <tr><td>No icon</td><td>Ready to use.</td><td>Nothing to do.</td></tr>
+    <tr><td>Indexing failed</td><td>Something went wrong while reading it.</td><td>Delete it and upload again. If it fails again, contact support.</td></tr>
+    <tr><td>Indexing rejected</td><td>The file type isn't supported, or the file is damaged or empty.</td><td>Save it as PDF or DOCX and upload that.</td></tr>
+  </table></div>
+  <div class="note tip"><b>Important</b>Uploading isn't enough on its own. In the next step you'll point your agent at this folder, so it knows to use it.</div>
+</section>
+
+<section id="build">
+  <h2><span class="n">5</span>Build your first agent</h2>
+  <p class="sub">You build agents on a "canvas": a drawing board where you drag boxes and connect them. The easiest way to start is a ready-made template.</p>
+
+  <h3>Start from a template (recommended)</h3>
+  <ol class="steps">
+    <li>Go to <span class="ui">Smart Sections</span> → <span class="ui">Vigyani Flow</span> and click <span class="ui">Create Workflow</span>.</li>
+    <li>On the left panel, open <b>Templates</b> and search for your kind of business: Healthcare Receptionist, Customer Support Center, E-Commerce Order Assistant, Restaurant Reservation Agent, Hotel Concierge, Travel Concierge and more.</li>
+    <li>Click a template. It fills the canvas with a working agent you can change.</li>
+  </ol>
+
+  <h3>Make it yours</h3>
+  <p>Use the three tabs on the left panel:</p>
+  <div class="grid">
+    <div class="card"><h4>Identity</h4><p>Give the agent a name (required). Optionally add an icon and a background picture.</p></div>
+    <div class="card"><h4>Config</h4><p>Choose where it works (<b>Web Chat, Web Voice, Phone, WhatsApp</b>), write its <b>Greeting</b> (the first thing it says), pick its languages and voice, and set <b>Knowledge Scope</b> to your Library folder.</p></div>
+    <div class="card"><h4>Nodes</h4><p>The building blocks. Drag one onto the canvas and connect it with a line.</p></div>
+  </div>
+  <p>Click any box on the canvas to edit it. The most important field is the agent's <b>instructions</b>: plain sentences telling it who it is and how to behave, for example <i>"You are the friendly receptionist of Sunrise Clinic. Help callers book appointments. Be brief and polite."</i></p>
+
+  <h3>The building blocks in plain words</h3>
+  <div class="tablewrap"><table>
+    <tr><th>Block</th><th>What it does</th></tr>
+    <tr><td><b>Agent</b></td><td>The main assistant that talks to customers. It can pass the customer to another agent, for example from "reception" to "billing".</td></tr>
+    <tr><td><b>Task Agent</b></td><td>Collects specific details from the customer, such as name, date and phone number.</td></tr>
+    <tr><td><b>Tool Agent</b></td><td>A helper that does one job for another agent behind the scenes.</td></tr>
+    <tr><td><b>Steps / Parallel / Loop</b></td><td>Order of work: one after another, several at once, or repeat until done.</td></tr>
+    <tr><td><b>Knowledge Base</b></td><td>Lets the agent search a folder from your Library.</td></tr>
+    <tr><td><b>Email · Payment Link</b></td><td>Sends confirmations and receipts, or a link for the customer to pay.</td></tr>
+    <tr><td><b>Google Grounding · Exa Search</b></td><td>Lets the agent look things up on the web.</td></tr>
+    <tr><td><b>API Tool · MCP Server · Python Code · Connector</b></td><td>Connections to your other systems. Usually set up by a technical teammate.</td></tr>
+  </table></div>
+  <div class="note"><b>Advanced blocks</b>The <b>Saga</b> group (Trip Handoff, Partner Kind and so on) is for multi-partner bookings such as tour packages. You can ignore it to begin with.</div>
+
+  <h3>Save</h3>
+  <p>Click <span class="ui">Create</span> (or <span class="ui">Save</span> when editing). You'll see "Workflow saved… You can now publish it."</p>
+  <div class="note warn"><b>"Missing API keys"?</b>The agent needs an AI key you haven't added yet. Click <span class="ui">Add keys</span> and follow <a href="#keys">step 3</a>.</div>
+</section>
+
+<section id="publish">
+  <h2><span class="n">6</span>Test &amp; publish</h2>
+  <p class="sub">"Publishing" switches your agent on. Always test it before sharing it with customers.</p>
+  <ol class="steps">
+    <li>On the canvas, click <span class="ui">Publish</span> (for voice agents: <span class="ui">Publish &amp; start voice</span>) and confirm. The badge changes from <i>Not Published</i> to <i>Published v1</i>. Every new publish goes up a number (v2, v3…).</li>
+    <li>Click <span class="ui">Test</span>. A new tab opens: type a message for a chat agent, or press <span class="ui">Start</span> and speak for a voice agent.</li>
+    <li>Ask it the questions your customers usually ask. If an answer is wrong, improve the instructions or the documents, then <b>Save and Publish again</b>.</li>
+  </ol>
+  <h3>Share it with customers</h3>
+  <ol class="steps">
+    <li>In <span class="ui">Vigyani Flow</span>, turn on the <span class="ui">Chat</span> switch on your agent's row.</li>
+    <li>Open the <b>⋯</b> menu → <span class="ui">Publish public URL…</span>. Type a short name for the link (for example <i>sunrise-clinic</i>) or leave it empty for an automatic one, then click <span class="ui">Publish public URL</span>.</li>
+    <li>Click <span class="ui">Copy</span> to put it on your website, social media or in messages. The ⋯ menu also has <span class="ui">Show QR code</span>, which is handy for posters and reception desks.</li>
+    <li>Click <span class="ui">Preview as visitor</span> to see what customers see. Visitors sign in with Google before chatting.</li>
+  </ol>
+  <div class="note tip"><b>Need to pause it?</b>Use <span class="ui">Stop Agent</span>, or <span class="ui">Unpublish</span> the public link. Your link name is kept, so you can switch it back on later.</div>
+</section>
+
+<section id="channels">
+  <h2><span class="n">7</span>Phone &amp; WhatsApp</h2>
+  <p class="sub">Go to <span class="ui">Settings</span> → <span class="ui">Channels</span> (admins only). Make sure the agent's <b>Config</b> tab has the matching channel ticked.</p>
+  <div class="grid">
+    <div class="card">
+      <h4>WhatsApp</h4>
+      <p>1. Choose which agent should reply.<br>2. Click <span class="ui">Generate code</span> (or <span class="ui">Generate QR</span>).<br>3. On your phone: WhatsApp → Settings → <b>Linked Devices</b> → Link a device, then enter the code or scan the QR.<br>4. The status changes to <b>Connected</b>. Use <span class="ui">Unpair</span> to disconnect.</p>
+    </div>
+    <div class="card">
+      <h4>Phone line</h4>
+      <p>You need a phone line from a telephone provider (called a "SIP trunk"). Save its login under Vigyani Credentials → <b>Credentials</b>, then click <span class="ui">Register phone number</span>. Enter the number with country code (e.g. +91…), choose incoming and/or outgoing calls, and pick the agent that answers.</p>
+    </div>
+  </div>
+  <div class="note"><b>Coming soon</b>WeChat and Telegram.</div>
+</section>
+
+<section id="team">
+  <h2><span class="n">8</span>Invite your team</h2>
+  <ol class="steps">
+    <li>Go to <span class="ui">Settings</span> → <span class="ui">Vigyani Members</span> → <span class="ui">Team</span>.</li>
+    <li>Click <span class="ui">Invite member</span>, enter their email, choose a role and click <span class="ui">Send invite</span>.</li>
+    <li>They get an email and must accept within <b>7 days</b>. Until then you'll see them under Pending invites.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <tr><th>Role</th><th>Good for</th><th>Can do</th></tr>
+    <tr><td><b>Viewer</b></td><td>Managers who want reports</td><td>Look only: dashboard, analytics, usage.</td></tr>
+    <tr><td><b>Operator</b></td><td>Staff who run the agents day to day</td><td>Everything a Viewer can, plus build and edit agents, the Library, templates and callers. No keys or billing.</td></tr>
+    <tr><td><b>Admin</b></td><td>The business owner</td><td>Everything: AI keys, credentials, phone, WhatsApp, branding, team members and billing.</td></tr>
+  </table></div>
+  <p>You can change someone's role or remove them from the same page at any time.</p>
+</section>
+
+<section id="insights">
+  <h2><span class="n">9</span>See how it's doing</h2>
+  <p class="sub">Open <span class="ui">Insights</span> in the left menu.</p>
+  <div class="grid">
+    <div class="card"><h4>Customer Insights</h4><p>What your customers keep asking for, gathered from their conversations.</p></div>
+    <div class="card"><h4>Analytics</h4><p>Number of conversations, how fast the agent replies, and how each agent performs.</p></div>
+    <div class="card"><h4>Tickets</h4><p>Customer requests that need a person to follow up.</p></div>
+    <div class="card"><h4>Usage</h4><p>How much the agent used the AI services, which is what your provider bills you for.</p></div>
+    <div class="card"><h4>Callers</h4><p>Each customer's history: summaries, chats and attachments. You can block abusive callers here.</p></div>
+  </div>
+  <div class="note tip"><b>Choose what to track</b>Under <span class="ui">Smart Sections</span> → <span class="ui">Insights Configurations</span> you pick which details (for example "preferred date" or "budget") are pulled from conversations and shown on Customer Insights.</div>
+</section>
+
+<section id="settings">
+  <h2><span class="n">10</span>Brand &amp; settings</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Where</th><th>What it's for</th></tr>
+    <tr><td><b>Vigyani Profile</b></td><td>Your name, company, bio, and changing your password.</td></tr>
+    <tr><td><b>Notifications</b></td><td>Turn email alerts, agent alerts and report emails on or off.</td></tr>
+    <tr><td><b>Brands</b></td><td>Your business name, logo, colours, contact details and default disclaimer. Used on documents and messages the agent sends.</td></tr>
+    <tr><td><b>Templates</b></td><td>Ready wording for the emails, SMS and PDFs your agent sends.</td></tr>
+    <tr><td><b>Document Templates</b></td><td>Quotations, invoices and confirmations the agent can fill in and send. Start from the library or from scratch.</td></tr>
+    <tr><td><b>Pricing Rules</b> (Smart Sections)</td><td>Your prices, including per-country prices. The agent always quotes from here and never invents a price. Use <span class="ui">Try</span> to check.</td></tr>
+    <tr><td><b>Vigyani Personas</b> (Smart Sections)</td><td>Partners and suppliers your agent can contact on your behalf, such as a hotel or a driver.</td></tr>
+  </table></div>
+</section>
+
+<section id="help">
+  <h2>Problems &amp; answers</h2>
+  <details><summary>I signed up but I'm stuck on "Awaiting Approval".</summary><p>New accounts are checked by a Vigyani administrator. You'll get an email when you're activated. If it's been more than a working day, contact Vigyani support.</p></details>
+  <details><summary>I didn't get the verification email.</summary><p>Check your spam or promotions folder for a message from "Vigyani AI". Still nothing? Try signing in again; there's an option to resend the email.</p></details>
+  <details><summary>Saving or publishing says "Missing API keys" / "Add your provider API key".</summary><p>Your agent needs an AI key that hasn't been added yet. See <a href="#keys">step 3</a>. Voice agents need three keys: thinking, listening and speaking.</p></details>
+  <details><summary>The agent doesn't know the answer, even though it's in my document.</summary><p>Check that (1) the file has finished reading in the Library, (2) the agent's <b>Knowledge Scope</b> (Config tab) points to that folder, and (3) you published again after changing it.</p></details>
+  <details><summary>I changed my agent but customers still see the old one.</summary><p>Changes go live only after you <span class="ui">Save</span> and then <span class="ui">Publish</span> again. Check that the version number went up.</p></details>
+  <details><summary>I can't see Credentials, Channels or Members.</summary><p>Those pages are for Admins. Ask your account admin to do the step, or to change your role.</p></details>
+  <details><summary>The agent quoted a wrong price.</summary><p>Add or fix the price under <b>Pricing Rules</b>. The agent always takes prices from there.</p></details>
+</section>
+
+<section id="words">
+  <h2>Words to know</h2>
+  <div class="card">
+  <dl class="gloss">
+    <dt>Agent</dt><dd>Your AI assistant that talks to customers.</dd>
+    <dt>Workflow / Vigyani Flow</dt><dd>The full design of your agent: its blocks, instructions and settings.</dd>
+    <dt>Canvas</dt><dd>The drawing board where you build the workflow.</dd>
+    <dt>Publish</dt><dd>Switching your latest saved version on so customers can use it.</dd>
+    <dt>API key / credential</dt><dd>A secret password from an AI company that lets your agent use their service. You keep it private.</dd>
+    <dt>LLM</dt><dd>The "thinking" AI that understands and writes replies (for example Gemini).</dd>
+    <dt>Speech-to-text / Text-to-speech</dt><dd>Turning a caller's voice into words, and turning the agent's words into a voice.</dd>
+    <dt>Library / Knowledge base</dt><dd>The documents your agent reads to answer questions.</dd>
+    <dt>Indexing</dt><dd>Vigyani reading a document and getting it ready to search.</dd>
+    <dt>Channel</dt><dd>Where the agent talks: web chat, web voice, phone or WhatsApp.</dd>
+    <dt>Tenant / account</dt><dd>Your business's private space on Vigyani. Your data is never shared with other businesses.</dd>
+  </dl>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer>Vigyani AI · Getting Started Handbook · November 2026</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('themebtn'), root=document.documentElement;
+  try{var t=localStorage.getItem('vh-theme'); if(t) root.setAttribute('data-theme',t);}catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('vh-theme',next);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
