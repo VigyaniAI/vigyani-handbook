@@ -1,0 +1,12 @@
+# This site is a single, self-contained static HTML page.
+# There is no framework, package manager or build step: Netlify publishes the
+# repository root as-is.
+[build]
+  publish = "."
+  command = ""
+
+# The page isn't named index.html, so serve it at the site root.
+[[redirects]]
+  from = "/"
+  to = "/Vigyani-AI-Getting-Started-Handbook.html"
+  status = 200
